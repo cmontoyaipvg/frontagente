@@ -10,7 +10,6 @@ import remarkGfm from "remark-gfm"
 import rehypeRaw from "rehype-raw"
 import rehypeSanitize from "rehype-sanitize"
 import type { Components } from "react-markdown"
-import { MermaidDiagram } from "./mermaid-diagram"
 import { SuggestionsRenderer } from "./suggestions-renderer"
 import { OptionsRenderer } from "./options-renderer"
 import { useState, useEffect, useRef, useCallback } from "react"
@@ -495,47 +494,7 @@ export function ChatMessage({
       const match = /language-(\w+)/.exec(className || "")
       const isInline = !match && (props as any).inline
     
-      // Verificar si es un diagrama Mermaid
-      if (match && match[1] === "mermaid") {
-        const codeContent = String(children).replace(/\n$/, "")
-        const mermaidComplete = hasCompleteMermaidBlocks(processedContent)
-        const isBlockComplete = isMermaidBlockComplete(codeContent)
-        
-        if (isContentStreaming && (!mermaidComplete || !isBlockComplete)) {
-          return (
-            <div className={cn(
-              "block rounded-md text-xs overflow-x-auto whitespace-pre",
-              isMobile ? "p-1.5 my-1.5 text-[10px]" : "p-2 my-2 text-xs",
-              theme === "dark" ? "bg-[#2a2e3b]" : "bg-gray-100"
-            )}>
-              <div className="flex items-center space-x-2 mb-2">
-                <div className={cn(
-                  "animate-spin border-2 border-blue-500 rounded-full border-t-transparent",
-                  isMobile ? "h-3 w-3" : "h-4 w-4"
-                )}></div>
-                <p className={cn(
-                  isMobile ? "text-xs" : "text-sm",
-                  theme === "dark" ? "text-blue-400" : "text-blue-600"
-                )}>
-                  Esperando diagrama completo...
-                </p>
-              </div>
-              <pre>{codeContent}</pre>
-            </div>
-          )
-        }
-        
-        // Usar una key única para cada diagrama basada en su contenido
-        return (
-          <MermaidDiagram 
-            key={`mermaid-${codeContent.substring(0, 20).replace(/\s+/g, '')}`} 
-            chart={codeContent} 
-            isStreaming={isContentStreaming}
-            isMobile={isMobile}
-          />
-        )
-      }
-      
+
       // Manejar bloques chartjson
       if (match && match[1] === "chartjson") {
         const codeContent = String(children).replace(/\n$/, "")
