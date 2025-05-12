@@ -48,7 +48,6 @@ import {
   AudioLinesIcon
 } from 'lucide-react'
 
-import { PlusIcon } from '@radix-ui/react-icons'
 
 export const ICONS: IconTypeMap = {
   'open-ai': OpenAILogo,
@@ -83,7 +82,6 @@ export const ICONS: IconTypeMap = {
   check: Check,
   'chevron-down': ChevronDown,
   'chevron-up': ChevronUp,
-  'plus-icon': PlusIcon,
   references: ReferencesIcon,
   trash: Trash,
   uploadIcon: FileCheck,
