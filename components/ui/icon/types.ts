@@ -36,7 +36,6 @@ export type IconType =
   | 'plus-icon'
   | 'references'
   | 'trash'
-  | 'paperclip'
   | 'stop'
   | 'loader'
   | 'image'
