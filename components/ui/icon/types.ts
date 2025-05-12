@@ -33,7 +33,6 @@ export type IconType =
   | 'check'
   | 'chevron-down'
   | 'chevron-up'
-  | 'plus-icon'
   | 'references'
   | 'trash'
   | 'stop'
